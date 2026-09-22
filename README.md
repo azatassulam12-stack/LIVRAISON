@@ -1,31 +1,45 @@
 # NEX-GEN — LIVRAISON
 
-Plateforme de gestion de livraisons pensée pour les boutiques, commerçants et livreurs en Côte d’Ivoire.
+Plateforme de livraison pensée pour les boutiques, commerçants et livreurs en Côte d’Ivoire. Le client final ne télécharge aucune application : il consulte un suivi sécurisé depuis son téléphone.
 
-## Objectif
+## MVP en cours
 
-Simplifier la création, l’attribution et le suivi des livraisons, depuis la boutique jusqu’à la confirmation de réception par le client. Le client final n’a pas besoin d’installer une application : il suit sa livraison au moyen d’un lien sécurisé.
+- Comptes Boutique, Livreur et Administrateur plateforme
+- Création, programmation et attribution de commandes
+- Statuts rapides pour les livreurs et bilan journalier
+- Position GPS, repères textuels et ouverture de navigation
+- Suivi client public via un token révocable et non devinable
+- Confirmation/correction de position par le client
 
-## MVP
+## Architecture
 
-- Création et programmation des livraisons par les boutiques
-- Attribution des courses aux livreurs
-- Application mobile dédiée aux livreurs
-- Gestion de tournées et mise à jour des statuts
-- Suivi client via un lien web sécurisé
-- Confirmation de livraison avec position GPS
-- Bilan quotidien des livraisons
+| Élément | Choix | Rôle |
+| --- | --- | --- |
+| `backend/` | Laravel 12, PHP 8.2+ | API REST, interface boutique, sécurité et données |
+| `mobile/` | Flutter (prochaine phase) | Application Android/iOS pour livreurs |
+| Base de données | MySQL 8+ ou PostgreSQL 15+ | Données relationnelles et historiques |
+| Hébergement initial | VPS classique | Monolithe simple à administrer |
 
-Cycle initial d’une livraison : `Demandée → Acceptée → Colis récupéré → En cours de livraison → Livrée`.
+Le projet reste volontairement monolithique : aucune infrastructure de microservices n’est requise pour le MVP.
 
-## Architecture prévue
+## Démarrage du backend
 
-- **Backend et interface boutique :** Laravel (monolithe)
-- **Application livreur :** Flutter
-- **API :** REST
-- **Base de données :** MySQL ou PostgreSQL
+```bash
+cd backend
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan test
+php artisan serve
+```
 
-Le projet privilégie une architecture simple, professionnelle et maintenable par un développeur seul, avec l’objectif de devenir une solution SaaS commercialisable.
+Configurez d’abord la base de données dans `.env`. Ne versionnez jamais ce fichier : seul `.env.example` est fourni.
+
+## Documentation
+
+- [Architecture et modèle de données](docs/architecture.md)
+- [Contrat API initial](docs/api.md)
 
 ---
 

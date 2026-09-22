@@ -1,0 +1,30 @@
+# Environnements et secrets
+.env
+.env.*
+!.env.example
+
+# Laravel / PHP
+backend/vendor/
+backend/storage/*.key
+backend/bootstrap/cache/*.php
+!backend/bootstrap/cache/.gitignore
+backend/storage/logs/*
+!backend/storage/logs/.gitignore
+
+# Flutter / Android / iOS
+mobile/.dart_tool/
+mobile/.flutter-plugins*
+mobile/.packages
+mobile/build/
+mobile/.idea/
+mobile/android/.gradle/
+mobile/android/app/debug/
+mobile/android/app/profile/
+mobile/android/app/release/
+mobile/ios/Pods/
+
+# IDE and operating system
+.DS_Store
+.idea/
+.vscode/
+*.iml
